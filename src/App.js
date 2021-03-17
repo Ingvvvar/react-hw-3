@@ -1,23 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+import { ClickCounter } from './components/ClickCounter';
+import { List } from './components/List';
+import { NameForm } from './components/NameForm';
 
-function App() {
+const Unique = (props) => {
+  return <h2>Уникальные имена из массива имён: <span><ul>{ props.name }</ul></span></h2>;
+}
+
+const names = ['misha', 'grisha', 'dasha', 'misha', 'grisha', 'dasha','misha', 'grisha', 'dasha'];
+const uniqueNames = [...new Set(names)];
+
+
+
+
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ClickCounter />
+      <hr/>
+      <List items= { names }/>
+      <Unique name = { uniqueNames.map(item => <li key={item.toString()}>{item}</li>) } />
+      <hr/>
+      <NameForm />
+
     </div>
   );
 }
